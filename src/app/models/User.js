@@ -16,15 +16,19 @@ class User extends Model {
       }
     );
     /* Vai ser executado antes que os dados sejam salvos no banco de dados */
-    this.addHook('beforeSave', async (user) => {
+    /* Gerando um hash para a senha */
+    this.addHook('beforeSave', async user => {
       if (user.password) {
         user.password_hash = await bcrypt.hash(user.password, 8);
       }
-
     });
 
     return this;
 
+  }
+
+  checkPassword(password) {
+    return bcrypt.compare(password, this.password_hash)
   }
 }
 

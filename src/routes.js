@@ -1,11 +1,4 @@
-const { Router } = require('express');
-
-
-const routes = new Router();
-
 /* const User = require('./app/models/User') */
-
-const UserController = require( './app/controller/UserController' );
 
 /* routes.get('/',  async (req, res) => {
   const user = await User.create({
@@ -16,7 +9,14 @@ const UserController = require( './app/controller/UserController' );
 
   return res.json(user);
 }); */
+const { Router } = require('express')
+
+const routes = new Router();
+
+const UserController = require('./app/controller/UserController');
+const SessionController = require('./app/controller/SessionController');
 
 routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store)
 
 module.exports = routes;

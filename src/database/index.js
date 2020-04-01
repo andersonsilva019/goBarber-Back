@@ -6,6 +6,7 @@ const databaseConfig = require('../config/database');
 
 const User = require('../app/models/User');
 
+/* Onde vai ficar todos os models */
 const models = [User];
 
 class Database {
