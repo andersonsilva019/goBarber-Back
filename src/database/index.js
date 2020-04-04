@@ -4,10 +4,12 @@ const Sequelize = require('sequelize');
 
 const databaseConfig = require('../config/database');
 
+/* Import Models */
 const User = require('../app/models/User');
+const File = require('../app/models/File')
 
 /* Onde vai ficar todos os models */
-const models = [User];
+const models = [User, File];
 
 class Database {
   constructor() {
@@ -18,7 +20,9 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig);
 
-    models.map(model => model.init(this.connection));
+    models
+      .map(model => model.init(this.connection))
+      .map(model => model.associate && model.associate(this.connection.models))
   }
 }
 module.exports = new Database();

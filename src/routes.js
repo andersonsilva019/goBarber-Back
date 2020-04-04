@@ -16,11 +16,12 @@ const routes = new Router();
 const multer = require('multer');
 const multerConfig = require('../src/config/multer');
 
-/* Controller */
+/* Import Controller */
 const UserController = require('./app/controller/UserController');
 const SessionController = require('./app/controller/SessionController');
+const FileController = require('./app/controller/FileController');
 
-/* Middlewares */
+/* Import Middlewares */
 const authMiddleware = require('./app/middlewares/auth')
 const upload = multer(multerConfig);
 
@@ -30,8 +31,6 @@ routes.post('/users', UserController.store);
 routes.put('/users', authMiddleware, UserController.update);
 
 /* Upload de arquivo por vez */
-routes.post('/files', upload.single('file'), (req, res) => {
-  return res.json({ ok: true })
-})
+routes.post('/files', upload.single('file'), FileController.store);
 
 module.exports = routes;
