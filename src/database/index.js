@@ -7,9 +7,10 @@ const databaseConfig = require('../config/database');
 /* Import Models */
 const User = require('../app/models/User');
 const File = require('../app/models/File')
+const Appointments = require('../app/models/Appointments');
 
 /* Onde vai ficar todos os models */
-const models = [User, File];
+const models = [User, File, Appointments];
 
 class Database {
   constructor() {
