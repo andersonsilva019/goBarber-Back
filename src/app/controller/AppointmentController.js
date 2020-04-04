@@ -8,10 +8,15 @@ const { startOfHour, parseISO, isBefore } = require('date-fns')
 class AppointmentController {
 
   async index(req, res) {
+    /* Por padrão, o usuário começa na página 1 */
+    const { page = 1 } = req.query;
+
     const appointments = await Appointments.findAll({
       where: { user_id: req.userId, canceled_at: null },
       order: ['date'],
       attributes: ['id', 'date'],
+      limit: 20,
+      offset: (page - 1) * 20,
       include: [
         {
           model: User,
