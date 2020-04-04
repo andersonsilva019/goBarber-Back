@@ -20,6 +20,7 @@ const multerConfig = require('../src/config/multer');
 const UserController = require('./app/controller/UserController');
 const SessionController = require('./app/controller/SessionController');
 const FileController = require('./app/controller/FileController');
+const ProviderController = require('./app/controller/ProviderController');
 
 /* Import Middlewares */
 const authMiddleware = require('./app/middlewares/auth')
@@ -29,6 +30,8 @@ routes.post('/sessions', SessionController.store)
 routes.post('/users', UserController.store);
 
 routes.put('/users', authMiddleware, UserController.update);
+
+routes.get('/providers', ProviderController.index);
 
 /* Upload de arquivo por vez */
 routes.post('/files', upload.single('file'), FileController.store);
