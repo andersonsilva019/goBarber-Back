@@ -29,13 +29,16 @@ const upload = multer(multerConfig);
 
 routes.post('/sessions', SessionController.store)
 routes.post('/users', UserController.store);
-routes.post('/appointments', AppointmentController.store);
 
-routes.put('/users', authMiddleware, UserController.update);
+routes.use(authMiddleware);
+
+routes.post('/appointments', AppointmentController.store);
+routes.post('/files', upload.single('file'), FileController.store);
+
+routes.put('/users', UserController.update);
 
 routes.get('/providers', ProviderController.index);
+routes.get('/appointments', AppointmentController.index);
 
-/* Upload de arquivo por vez */
-routes.post('/files', upload.single('file'), FileController.store);
 
 module.exports = routes;
