@@ -22,7 +22,8 @@ const SessionController = require('./app/controller/SessionController');
 const FileController = require('./app/controller/FileController');
 const ProviderController = require('./app/controller/ProviderController');
 const AppointmentController = require('./app/controller/AppointmentController');
-const ScheduleController = require('./app/controller/ScheduleController')
+const ScheduleController = require('./app/controller/ScheduleController');
+const NotificationController = require('./app/controller/NotificationController');
 
 /* Import Middlewares */
 const authMiddleware = require('./app/middlewares/auth')
@@ -41,6 +42,7 @@ routes.put('/users', UserController.update);
 routes.get('/providers', ProviderController.index);
 routes.get('/appointments', AppointmentController.index);
 routes.get('/schedule', ScheduleController.index)
+routes.get('/notifications', NotificationController.index)
 
 
 module.exports = routes;
