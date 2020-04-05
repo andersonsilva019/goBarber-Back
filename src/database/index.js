@@ -1,6 +1,7 @@
 /* Esse arquivo vai fazer a conexão com o banco de dados e carregar os models */
 
 const Sequelize = require('sequelize');
+const mongoose = require('mongoose')
 
 const databaseConfig = require('../config/database');
 
@@ -15,6 +16,7 @@ const models = [User, File, Appointments];
 class Database {
   constructor() {
     this.init();
+    this.mongo();
   }
 
   /* Esse é o método que vai fazer a conexão com o banco de dados e carregar os models */
@@ -24,6 +26,13 @@ class Database {
     models
       .map(model => model.init(this.connection))
       .map(model => model.associate && model.associate(this.connection.models))
+  }
+
+  mongo() {
+    this.mongoConnection = mongoose.connect(
+      'mongodb://localhost:27017/gobarber',
+      { useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology: true }
+    )
   }
 }
 module.exports = new Database();
