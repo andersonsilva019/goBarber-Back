@@ -34,16 +34,21 @@ routes.post('/users', UserController.store);
 
 routes.use(authMiddleware);
 
-routes.post('/appointments', AppointmentController.store);
-routes.post('/files', upload.single('file'), FileController.store);
-
 routes.put('/users', UserController.update);
+
+routes.post('/appointments', AppointmentController.store);
+routes.get('/appointments', AppointmentController.index);
+routes.delete('/appointments/:id', AppointmentController.delete);
+
+routes.get('/notifications', NotificationController.index)
 routes.put('/notifications/:id', NotificationController.updade)
 
+
+routes.post('/files', upload.single('file'), FileController.store);
+
 routes.get('/providers', ProviderController.index);
-routes.get('/appointments', AppointmentController.index);
+
 routes.get('/schedule', ScheduleController.index)
-routes.get('/notifications', NotificationController.index)
 
 
 module.exports = routes;
