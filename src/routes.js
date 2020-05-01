@@ -24,6 +24,7 @@ const ProviderController = require('./app/controller/ProviderController');
 const AppointmentController = require('./app/controller/AppointmentController');
 const ScheduleController = require('./app/controller/ScheduleController');
 const NotificationController = require('./app/controller/NotificationController');
+const AvailableController = require('./app/controller/AvailableController');
 
 /* Import Middlewares */
 const authMiddleware = require('./app/middlewares/auth')
@@ -47,6 +48,7 @@ routes.put('/notifications/:id', NotificationController.updade)
 routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/providers', ProviderController.index);
+routes.get('/providers/:providerId/available', AvailableController.index)
 
 routes.get('/schedule', ScheduleController.index)
 
