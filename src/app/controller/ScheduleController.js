@@ -26,6 +26,14 @@ class ScheduleController {
           [Op.between]: [startOfDay(parsedDate), endOfDay(parsedDate)]
         },
       },
+      /* Usado para retornar um dado de um relacionamento */
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name'],
+        }
+      ],
       /* Ordenando por data */
       order: ['date']
 
