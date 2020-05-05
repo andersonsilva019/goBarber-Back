@@ -14,7 +14,7 @@ const { Router } = require('express')
 const routes = new Router();
 
 const multer = require('multer');
-const multerConfig = require('../src/config/multer');
+const multerConfig = require('./config/multer');
 
 /* Import Controller */
 const UserController = require('./app/controller/UserController');
